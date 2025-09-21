@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Light Switch Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="dark-background text-center">
+      <div class="bulb-container">
+        <img
+          src="https://d2clawv67efefq.cloudfront.net/ccbp-dynamic-webapps/bulb-go-on-img.png"
+          class="bulb-image"
+          id="bulbImage"
+          alt="Light bulb"
+        />
+      </div>
+      <div class="cat-container">
+        <img
+          src="https://d2clawv67efefq.cloudfront.net/ccbp-dynamic-webapps/cat-img.png"
+          class="cat-image"
+          id="catImage"
+          alt="Cat watching the light"
+        />
+      </div>
+      <div class="switch-container">
+        <div class="switch-board">
+          <h1 class="switch-status" id="switchStatus" aria-live="polite">Switched On</h1>
+          <div class="switch-buttons">
+            <button class="off-switch" id="offSwitch" onclick="switchOff()" aria-label="Turn off the light">
+              OFF
+            </button>
+            <button class="on-switch" id="onSwitch" onclick="switchOn()" aria-label="Turn on the light">
+              ON
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>

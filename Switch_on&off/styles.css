@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap");
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Main background with gradient */
+.dark-background {
+  background: linear-gradient(135deg, #0b0b0b 0%, #1a1a1a 50%, #0b0b0b 100%);
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.dark-background.light-mode {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+}
+
+/* Text center utility */
+.text-center {
+  text-align: center;
+}
+
+/* Container styles */
+.bulb-container {
+  margin-bottom: 30px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.cat-container {
+  margin-bottom: 40px;
+}
+
+.switch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
+/* Image styles with animations */
+.bulb-image {
+  width: 150px;
+  height: auto;
+  transition: all 0.6s ease;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+}
+
+.bulb-image.bright {
+  filter: drop-shadow(0 0 40px rgba(255, 255, 0, 0.8));
+  transform: scale(1.05);
+}
+
+.cat-image {
+  width: 300px;
+  height: auto;
+  transition: all 0.5s ease;
+  border-radius: 15px;
+}
+
+/* Switch board with modern design */
+.switch-board {
+  background: linear-gradient(145deg, #8a9198, #6d757e);
+  width: 320px;
+  padding: 32px 24px;
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.switch-board:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Switch status with glow effect */
+.switch-status {
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.switch-status.glowing {
+  text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+  color: #ffff88;
+}
+
+/* Button container */
+.switch-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Base button styles */
+.on-switch,
+.off-switch {
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.on-switch:before,
+.off-switch:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.on-switch:hover:before,
+.off-switch:hover:before {
+  left: 100%;
+}
+
+/* ON switch styles */
+.on-switch {
+  background: linear-gradient(145deg, #22c55e, #16a34a);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.on-switch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+}
+
+.on-switch:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.on-switch.inactive {
+  background: linear-gradient(145deg, #cbd2d9, #9ca3af);
+  box-shadow: 0 4px 12px rgba(203, 210, 217, 0.2);
+}
+
+/* OFF switch styles */
+.off-switch {
+  background: linear-gradient(145deg, #e12d39, #dc2626);
+  box-shadow: 0 4px 12px rgba(225, 45, 57, 0.3);
+}
+
+.off-switch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(225, 45, 57, 0.4);
+}
+
+.off-switch:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(225, 45, 57, 0.3);
+}
+
+.off-switch.inactive {
+  background: linear-gradient(145deg, #cbd2d9, #9ca3af);
+  box-shadow: 0 4px 12px rgba(203, 210, 217, 0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Pulse animation for active states */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.bulb-image.pulsing {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dark-background {
+    padding: 10px;
+  }
+  
+  .bulb-image {
+    width: 120px;
+  }
+  
+  .cat-image {
+    width: 250px;
+  }
+  
+  .switch-board {
+    width: 280px;
+    padding: 24px 16px;
+  }
+  
+  .switch-status {
+    font-size: 24px;
+  }
+  
+  .on-switch,
+  .off-switch {
+    width: 85px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .switch-buttons {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bulb-image {
+    width: 100px;
+  }
+  
+  .cat-image {
+    width: 200px;
+  }
+  
+  .switch-board {
+    width: 250px;
+    padding: 20px 12px;
+  }
+  
+  .switch-status {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .on-switch,
+  .off-switch {
+    width: 75px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
