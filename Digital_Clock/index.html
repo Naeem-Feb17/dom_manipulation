@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock & Timer - DOM Manipulation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container-fluid min-vh-100 bg-gradient">
+        <div class="row h-100">
+            <!-- Digital Clock Section -->
+            <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                <div class="clock-container">
+                    <div class="clock-header">
+                        <h2>Digital Clock</h2>
+                        <div class="date-display" id="dateDisplay"></div>
+                    </div>
+                    
+                    <div class="time-display">
+                        <div class="time" id="timeDisplay">00:00:00</div>
+                        <div class="period" id="periodDisplay">AM</div>
+                    </div>
+                    
+                    <div class="clock-controls">
+                        <button class="btn btn-format" onclick="toggleFormat()" id="formatToggle">
+                            Switch to 24H
+                        </button>
+                        <button class="btn btn-timezone" onclick="toggleTimezone()" id="timezoneToggle">
+                            UTC
+                        </button>
+                    </div>
+                    
+                    <div class="timezone-info" id="timezoneInfo">
+                        Local Time
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timer & Stopwatch Section -->
+            <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                <div class="timer-container">
+                    <div class="timer-tabs">
+                        <button class="tab-btn active" onclick="showTab('stopwatch')" id="stopwatchTab">
+                            Stopwatch
+                        </button>
+                        <button class="tab-btn" onclick="showTab('countdown')" id="countdownTab">
+                            Timer
+                        </button>
+                    </div>
+                    
+                    <!-- Stopwatch -->
+                    <div class="timer-content active" id="stopwatchContent">
+                        <div class="timer-display">
+                            <div class="timer-time" id="stopwatchDisplay">00:00:00</div>
+                            <div class="timer-milliseconds" id="stopwatchMs">.000</div>
+                        </div>
+                        
+                        <div class="timer-controls">
+                            <button class="btn btn-start" onclick="startStopwatch()" id="stopwatchStart">
+                                Start
+                            </button>
+                            <button class="btn btn-lap" onclick="lapStopwatch()" id="stopwatchLap" disabled>
+                                Lap
+                            </button>
+                            <button class="btn btn-reset" onclick="resetStopwatch()" id="stopwatchReset">
+                                Reset
+                            </button>
+                        </div>
+                        
+                        <div class="lap-times" id="lapTimes"></div>
+                    </div>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="timer-content" id="countdownContent">
+                        <div class="timer-inputs">
+                            <div class="input-group">
+                                <label>Hours</label>
+                                <input type="number" id="hoursInput" min="0" max="23" value="0" onchange="updateCountdownDisplay()">
+                            </div>
+                            <div class="input-group">
+                                <label>Minutes</label>
+                                <input type="number" id="minutesInput" min="0" max="59" value="5" onchange="updateCountdownDisplay()">
+                            </div>
+                            <div class="input-group">
+                                <label>Seconds</label>
+                                <input type="number" id="secondsInput" min="0" max="59" value="0" onchange="updateCountdownDisplay()">
+                            </div>
+                        </div>
+                        
+                        <div class="timer-display">
+                            <div class="timer-time" id="countdownDisplay">00:05:00</div>
+                        </div>
+                        
+                        <div class="timer-controls">
+                            <button class="btn btn-start" onclick="startCountdown()" id="countdownStart">
+                                Start
+                            </button>
+                            <button class="btn btn-pause" onclick="pauseCountdown()" id="countdownPause" disabled>
+                                Pause
+                            </button>
+                            <button class="btn btn-reset" onclick="resetCountdown()" id="countdownReset">
+                                Reset
+                            </button>
+                        </div>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar" id="countdownProgress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Info -->
+        <div class="features-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Clock Features</h4>
+                        <ul>
+                            <li>Real-time digital clock display</li>
+                            <li>12/24 hour format toggle</li>
+                            <li>Local and UTC timezone support</li>
+                            <li>Current date display</li>
+                            <li>Responsive design</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Timer Features</h4>
+                        <ul>
+                            <li>Precise stopwatch with milliseconds</li>
+                            <li>Lap time recording</li>
+                            <li>Countdown timer with progress bar</li>
+                            <li>Visual and audio notifications</li>
+                            <li>Customizable timer duration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio for timer notification -->
+    <audio id="timerAudio" preload="auto">
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DwxmlhGwU" type="audio/wav">
+    </audio>
+    
+    <script src="index.js"></script>
+</body>
+</html>
